@@ -7,7 +7,7 @@ public class CarSpawner : MonoBehaviour
     public GameObject[] cars;
     public Transform[] carsSpawnPoint;
 
-    public float spawnInterval = 5f;
+    private float spawnInterval = 2f;
     private Vector3 spawnRotation = new Vector3(0, 180, 0);
     private WaitForSeconds waitTime;
 

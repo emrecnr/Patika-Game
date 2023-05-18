@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraFallow : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    Vector3 camOffset = new Vector3(0f, 5f, -11f);
+    public Vector3 camOffset;
+    
     void Start()
     {
         
@@ -18,5 +19,8 @@ public class CameraFallow : MonoBehaviour
 
         transform.position = player.transform.position+camOffset;
         
+        
+        
     }
+    
 }

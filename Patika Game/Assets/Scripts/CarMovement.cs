@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+
     Cars cars;
     private float moveSpeed = 25f;
     private float turnSpeed = 35f;
@@ -12,12 +13,18 @@ public class CarMovement : MonoBehaviour
     private float horizontalInput;
     private float forwardInput;
 
-    
+    public GameObject skybox;
 
-    
+
+    private void Awake()
+    {
+        Renderer rendererr = GetComponent<Renderer>();
+    }
+
     void Update()
     {
         Move();
+        Skybox();
     }
 
     private void Move()
@@ -28,5 +35,12 @@ public class CarMovement : MonoBehaviour
         transform.Translate(Vector3.forward * moveSpeed * forwardInput * Time.deltaTime);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
 
+
+    }
+    void Skybox()
+    {
+        // Skybox'un hareketini arabayla iliþkilendirerek güncelleme
+        float skyboxMove = moveSpeed * Time.deltaTime;
+        skybox.transform.position = transform.position;
     }
 }
