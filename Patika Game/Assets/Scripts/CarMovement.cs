@@ -6,7 +6,7 @@ public class CarMovement : MonoBehaviour
 {
 
     Cars cars;
-    private float moveSpeed = 25f;
+    public  float moveSpeed = 25f;
     private float turnSpeed = 35f;
 
 
@@ -14,6 +14,8 @@ public class CarMovement : MonoBehaviour
     private float forwardInput;
 
     public GameObject skybox;
+
+    private float distance = 1; 
 
 
     private void Awake()
@@ -34,6 +36,11 @@ public class CarMovement : MonoBehaviour
 
         transform.Translate(Vector3.forward * moveSpeed * forwardInput * Time.deltaTime);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
+        if (forwardInput>0)
+        {
+            
+            FindObjectOfType<MeterCounter>().Counter(distance*Time.deltaTime);
+        }
 
 
     }

@@ -16,7 +16,7 @@ public class CamSwitch : MonoBehaviour
 
     private void Update()
     {
-        // A tuþuna bastýðýnda kameralarý deðiþtir
+        // E tuþuna bastýðýnda kameralarý deðiþtir
         if (Input.GetKeyDown(KeyCode.E))
         {
             mainCamera.enabled = !mainCamera.enabled;
