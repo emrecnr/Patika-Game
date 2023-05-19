@@ -6,7 +6,7 @@ public class CarMovement : MonoBehaviour
 {
 
     Cars cars;
-    public  float moveSpeed = 25f;
+    public float moveSpeed = 25f;
     private float turnSpeed = 35f;
 
 
@@ -15,7 +15,8 @@ public class CarMovement : MonoBehaviour
 
     public GameObject skybox;
 
-    private float distance = 1; 
+    private float distance = 1;
+    public bool isGrounded=true;
 
 
     private void Awake()
@@ -27,6 +28,11 @@ public class CarMovement : MonoBehaviour
     {
         Move();
         Skybox();
+
+        if (!isGrounded)
+        {
+            FindObjectOfType<GameOver>().GameOvr(); 
+        }
     }
 
     private void Move()
@@ -36,10 +42,10 @@ public class CarMovement : MonoBehaviour
 
         transform.Translate(Vector3.forward * moveSpeed * forwardInput * Time.deltaTime);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
-        if (forwardInput>0)
+        if (forwardInput > 0)
         {
-            
-            FindObjectOfType<MeterCounter>().Counter(distance*Time.deltaTime);
+
+            FindObjectOfType<MeterCounter>().Counter(distance * Time.deltaTime);
         }
 
 
@@ -50,4 +56,17 @@ public class CarMovement : MonoBehaviour
         float skyboxMove = moveSpeed * Time.deltaTime;
         skybox.transform.position = transform.position;
     }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Road"))
+        {
+            isGrounded = false;
+        }
+    }
+
+
+
+    
 }
